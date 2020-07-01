@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web socket</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(()=>{
+            const socket = io.connect("http://localhost:3000");
+            $('button').on('click',()=>{
+                //olayı tetitkledim ve parametre yolladım.
+                socket.emit("sendMessageToServer",{name:"yunus" , surname:"sen"});
+            })
+            //olayı tanımladım ve emitten gelen datayı yazdırdım.
+            socket.on('merhaba de',(data)=>{
+                $('#merhaba').append('merhaba' +data.country  + "<br>")
+
+            })
+        });
+    </script>
+</head>
+<body>
+<p>web socet</p>
+<button>selam ver</button>
+<div id="merhaba"></div>
+</body>
+</html>
